@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coinswitch Assignment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: white;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            margin-left: 10px; 
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        nav li {
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        nav li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        nav li:hover ul {
+            display: block;
+        }
+
+        nav li ul li {
+            padding: 0.5rem 1rem;
+            white-space: nowrap;
+        }
+
+        nav li ul li:hover {
+            background-color: white;
+        }
+
+        .arrow::after {
+            content: ' ▼';
+            font-size: 0.7rem;
+        }
+
+        .login-button {
+            background-color: #69a51f;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .intro {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            height: auto;
+            background-color: white;
+        }
+
+        .intro-text {
+            max-width: 50%;
+            text-align: left;
+        }
+
+        .intro-text h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .why-it-matters {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .why-it-matters h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .feature {
+            max-width: 200px;
+            text-align: left;
+            margin: 1rem 0;
+        }
+
+        .feature img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background-color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div style="display: flex; align-items: center;">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADZ0lEQVR4Aa2XAURccRzHn3OSTEi2c+/eu5OQ7b0rCTMzw5Ct616ZzMwAW90FmDAMmQS6u2GShEwgIUkYEmYShnZ3ZbaZIckkOefda+3zlv8kvb177+7PR1XX9/u53///3t1J/1uhWFcgrOpNIVVvCyvxJ7KivZVV/RMc8/v3/L01nTN707lKMZWzTgVpcPkZKu9Gc5UWx/LWaGcjJd3wUlY1u9SEU4EQSL0x76RylW2HMgcJF4Frsc4rFDyjaPN86WUCIzmrg8CPItil3F1AjnW12M8aDuwiN4HhzGlTKmstixJ3HAREOeHjIMpdBSQW5a/TWeu4lgmIsb+APVmhxItApnIrna389D2BcEQPEjgI38OqRoFXATPIBFbA31UgK/Zlpi2LcK8C9kplrLuE//I8Acob4BGhR34FxCI4C6anMxBW9KuwJoJrERjJnMQ4C8ue7gOyGr9NYKkeAqOZStA+kFyWG1VPQI7qYyK0RgFxFhpSmUoPB3KB4pLrGSBstX4CYivMANuhMolXbMket2rL8SogbLfeAhe2RUMgi8wX2EfgGIEyAvNCoFSzgMt6nvkdGOaAIjCEwEQ6dzJN+ehozmyWRGC9BQyj0GgkihEjsdNuJAsRw/jWIF22CCvXU8BIFJqN/kIfTCCwCCt8vzjQX5waSBbvI9Z0UWCvXgI80zbKpmGXwhKcnsOEXcgO9u+0nxfYqIeAYeRDFG9QUBalDpRgDgn1TCCqj9cqwNgbYQosUeSCxdbMGX3FVgS0PlnVrBoFHsK+He6BkvFg555EWAS2/QpwuoNGf3FGjN4L9hSkiBpvInCMQNOfQDGEwLqnckGikJdivPUmsBu2fAkk8hrj3/QjACXJXooav2JPAY69CiQT+TgCW74EQGKdTSF6I8xhnCG87GkCyc8R+/LzKZC/8K5Y0whfBtPLVYDALOfA9CEwe8nnAt2WWIIjDwJ9sOelHOEyd85e6bKlxPT2sBqflBX9a1UCxt/7/7xRvYDJ4xfA+dU0FO1soWSIshU4cL8VFzsIXKuqPFFY57E9iAec+sV2NMhRexp6L6WT8AEOnV6MCO2CVUrKTmOHRbiJRKNU7eJTU1BW480UhyiOhVS9R1GvxxEIXhAIQASewhKlP/hq8fXQng57/pjy1mRy59///QF4mVAoR9H1hQAAAABJRU5ErkJggg==" alt="">
+                <h1>Coinswitch</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="arrow">
+                        Products
+                        <ul>
+                            <li>Product 1</li>
+                            <li>Product 2</li>
+                            <li>Product 3</li>
+                        </ul>
+                    </li>
+                    <li>Coins</li>
+                    <li>Ventures</li>
+                    <li>Blog</li>
+                    <li class="arrow">
+                        Company
+                        <ul>
+                            <li>About Us</li>
+                            <li>Careers</li>
+                            <li>Contact</li>
+                        </ul>
+                    </li>
+                    <li><button class="login-button">Login To Pro</button></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="intro">
+                <div class="intro-image">
+                    <img src="https://coinswitch.co/switch/wp-content/uploads/2023/03/The-role-of-Web-3.0-in-enabling-Decentralized-Autonomous-Organizations-DAOs-1536x922.jpg" alt="Intro Image" style="background-color: white;">
+                </div>
+                <div class="intro-text">
+                    <h2>We believe that Web3 and blockchain are the foundations of the new digital, decentralized economy.</h2>
+                    <p>To this end, we're partnering with startups that are advancing the future of Blockchain technology. We provide early stage founders with the capital, network connections and most importantly, the advice they need to transform the Web3 landscape in India.</p>
+                </div>
+            </section>
+            <section class="why-it-matters">
+                <h2>Why it Matters?</h2>
+                <div class="features">
+                    <div class="feature">
+                        <img src="https://s3.ap-southeast-1.amazonaws.com/files.coinswitch.co/images/partnership.svg" alt="Feature 1">
+                        <p>Partnership with India's largest wealth tech destination</p>
+                    </div>
+                    <div class="feature">
+                        <img src="https://s3.ap-southeast-1.amazonaws.com/files.coinswitch.co/images/network.svg" alt="Feature 2">
+                        <p>Access to a network of 70+ global venture capital partners</p>
+                    </div>
+                    <div class="feature">
+                        <img src="https://s3.ap-southeast-1.amazonaws.com/files.coinswitch.co/images/capital.svg" alt="Feature 3">
+                        <p>Capital infusion up to $250,000</p>
+                    </div>
+                    <div class="feature">
+                        <img src="https://s3.ap-southeast-1.amazonaws.com/files.coinswitch.co/images/mentorship.svg" alt="Feature 4">
+                        <p>Mentorship from in-house experts</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
